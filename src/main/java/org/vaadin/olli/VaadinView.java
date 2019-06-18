@@ -41,7 +41,7 @@ public class VaadinView extends VerticalLayout {
             pagesShown.add(selectedPage);
         });
         tabs.setWidthFull();
-        pages.setSizeFull();
+        pages.setWidthFull();
         add(tabs);
         add(pages);
         expand(pages);
