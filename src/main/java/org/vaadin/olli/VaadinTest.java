@@ -12,10 +12,10 @@ import com.vaadin.flow.theme.lumo.Lumo;
 /**
  * The main view contains a button and a click listener.
  */
-@Route("")
-@BodySize(height = "100%", width = "100%")
+@Route("VaadinTest")
 @Theme(Lumo.class)
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+@BodySize(height = "100vh", width = "100%")
 public class VaadinTest extends VerticalLayout {
     HorizontalLayout header;
     VaadinView vaadinView;
@@ -44,7 +44,6 @@ public class VaadinTest extends VerticalLayout {
 
         vaadinView = new VaadinView();
         add(vaadinView);
+        expand(vaadinView);
     }
-
-
 }

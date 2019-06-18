@@ -2,6 +2,7 @@ package org.vaadin.olli;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.Grid.Column;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
@@ -15,7 +16,6 @@ public class VaadinView extends VerticalLayout {
     Grid<Data> grid;
 
     public VaadinView() {
-        setSizeFull();
         setupTabs();
     }
 
@@ -40,11 +40,11 @@ public class VaadinView extends VerticalLayout {
             selectedPage.setVisible(true);
             pagesShown.add(selectedPage);
         });
-        tabs.setSizeFull();
+        tabs.setWidthFull();
         pages.setSizeFull();
         add(tabs);
         add(pages);
-        this.setFlexGrow(10.0d, pages);
+        expand(pages);
     }
 
     // Goal here is for table to grow vertically
@@ -53,23 +53,19 @@ public class VaadinView extends VerticalLayout {
     Div initializeTabA() {
         Div div = new Div();
         div.setSizeFull();
-        // Adding in VerticalLayout made no difference, tried it to use flexGrow.
-        VerticalLayout vl = new VerticalLayout();
-        vl.setSizeFull();
-        div.add(vl);
 
         grid = new Grid<Data>();
-        Grid.Column<Data> aCol = grid.addColumn(Data::getA).setHeader("A");
-        Grid.Column<Data> bCol = grid.addColumn(Data::getB).setHeader("B");
-        Grid.Column<Data> cCol = grid.addColumn(Data::getC).setHeader("C");
+        Column<Data> aCol = grid.addColumn(Data::getA).setHeader("A");
+        Column<Data> bCol = grid.addColumn(Data::getB).setHeader("B");
+        Column<Data> cCol = grid.addColumn(Data::getC).setHeader("C");
 
         List<Data> rows = new ArrayList<Data>();
-        for (int i = 0; i < 13; i++) {
+        for( int i = 0; i < 53; i++ ) {
             rows.add(new Data("a1", "b1", "c1"));
         }
         grid.setItems(rows);
-        vl.add(grid);
-        vl.setFlexGrow(10.0, grid);
+        div.add(grid);
+        grid.setSizeFull();
         return div;
     }
 
